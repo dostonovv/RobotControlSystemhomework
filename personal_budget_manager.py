@@ -1,30 +1,53 @@
+import json
 class BudgetManager:
     """class Budget Manager"""
-    def __init__(self,income , expense , balance , category_income,category_expense):
-        """dunder method"""
-        self.income = income
-        self.expense = expense
+    def __init__(self , balance , data):
+        """d434"""
         self.balance = balance
-        self.category_income = []
-        self.category_expense = []
-    def add_income(self , amount :int, category , date):
-        self.income += amount
-        self.balance += amount
-        self.category_income.append((category, date))
-        return f"{amount} qo‘shildi. Jami daromad: {self.income}"
-    def add_expense(self, amount, category, date):
-        self.expense += amount
-        self.balance-=amount
-        self.category_expense.append((category, date))
-        return f"{amount} qo‘shildi. Jami xarajat: {self.expense}"
-    def get_balance(self):
-        allls = self.income - self.expense
-        return f"Your balance : {allls}"
-    def get_expense_by_category(self , category):
-        pass
-    def get_top_expense_category(self):
-        pass
-    def save_to_file(self):
-        pass
-    def load_file(self):
-        pass
+        self.data = data if data else {}
+
+
+    def incomef(self , amount , date):
+        if isinstance(amount , int):
+            self.balance += amount
+            self.data.update({
+                date: [{"type": "+", "amount": amount}]
+            })
+        else:
+            return "Type Error Bro"
+
+    def expenses(self, amount, date):
+        if isinstance(amount, int):
+            if amount < self.balance:
+                self.balance -= amount
+                if date not in self.data:
+                    self.data[date] = []
+                self.data[date].append({"type": "-", "amount": amount})
+            else:
+                return "Amount Error"
+        else:
+            return "Type Error, Amount = int() !!!!"
+    def balances(self):
+        """@!@!@"""
+        return (f"{self.balance}$ Balansingiz !")
+    def write_base(self):
+        """#@#@"""
+        with open("Data_finance.json" , "w") as file:
+            json.dump(self.data , file , indent=4)
+
+
+budget = BudgetManager(balance=1000, data={})
+
+
+budget.incomef(500, "20.02.25")
+
+
+budget.expenses(300, "21.02.25")
+
+budget.expenses(300, "21.02.25")
+budget.expenses(300, "21.03.25")
+
+
+print(budget.balances())
+budget.write_base()
+

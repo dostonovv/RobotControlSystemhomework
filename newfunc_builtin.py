@@ -37,3 +37,65 @@
 # print(sell_prodeuct(products , "appe" , 1))
 
 # -------------------------------------------------life--------------------------------------------
+# class Stack:
+# #     def __init__(self):
+# #         self.stack = []
+# #
+# #     def size(self):
+# #         return len(self.stack)
+# #
+# #     def push(self, item):
+# #         self.stack.append(item)
+# #     def peek(self):
+# #         if not self.is_empty():
+# #             return self.stack[-1]
+# #         else:
+# #             return "empty"
+# #     def pop(self):
+# #         if not self.is_empty():
+# #             return self.stack.pop()
+# #         else:
+# #             return "empty"
+# #
+# #
+# #
+# #     def is_empty(self):
+# #         return len(self.stack) == 0
+# #
+# #
+# #
+# #
+# #
+# # s = Stack()
+# # s.push(10)
+# # s.push(20)
+# # s.push(30)
+# #
+# # print(s.peek())
+# # print(s.pop())
+# # print(s.pop())
+# # print(s.is_empty())
+# # print(s.size())
+
+
+# -------------------------------------------------------------------------------------------------
+
+
+class Stack:
+    """"@!@@!"""
+    def __init__(self):
+        self.cnt = 0
+    def aa1(self , val):
+        """@!@!@"""
+        for i in val:
+            if i == "(":
+                self.cnt+=1
+                print(self.cnt)
+            elif i == ")":
+                self.cnt-=1
+                print(self.cnt)
+        if self.cnt == 0:
+            return "Hammasi to'gri"
+        else:
+            return "Hatolik bor"
+
